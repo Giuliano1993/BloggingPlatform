@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,8 +26,11 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+    Route::get('/posts', function (Request $request) {
+        return view('posts/index',array(
+            'posts'=>$request->user()->posts
+        ));
+    })->name('posts.index');
 
-    Route::get('/maremma', function () {
-        return view('maremma');
-    })->name('maremma');
+   
 });
